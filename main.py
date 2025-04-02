@@ -20,22 +20,25 @@ for index, article in enumerate(articles):
     print(f"{index+1}. ARTICLE")
 
     # article title
-    print(article['title'])
+    title = article['title'] 
+    print(title)
     print()
 
+    ad = article['description']
     # if description is a nonetype, invent it
-    if article['description'] == None:
+    if ad == None:
         description = "No description available. CLick the link to read more."
 
     # if it's longer that 150, only show first 150 characters
-    elif len( str(article['description']) ) > 150:
-        description = f"{str(article['description']) [:150]}..."
+    elif len(str(ad)) > 150:
+        description = f"{str(ad) [:150]}..."
 
     # if it's not greater that 150, show all of it
-    elif len(article['description']) <= 150:
-        description = str(article['description'])
+    elif len(ad) <= 150:
+        description = str(ad)
 
-    print( f"{description}" )      
+    print(description)      
 
     # show the link
-    print(f"Link: {article['link']}")
+    link = article['link']
+    print(f"Link: {link}")
