@@ -14,39 +14,33 @@ content = request.json() # convert the content into a json format dictionary
 # access the value of 'results' key
 articles = content['results']
 
-# create a body
-body = ""
+# create a body and a subject
+body = "Subject: Latest News"
 
 # iterate over all elements in the 'articles' list
 for index, article in enumerate(articles):
-    print()
-    #print(f"{index+1}. ARTICLE")
 
     # article title
-    title = article['title'] 
-    #print(title)
-    print()
+    title = str(article['title']) 
 
-    ad = article['description']
+    ad = str(article['description'])
     # if description is a nonetype, invent it
-    if ad == None:
-        description = "No description available. CLick the link to read more."
+    if ad == "None":
+        description = "No description available. Click the link to read more."
 
     # if it's longer that 150, only show first 150 characters
-    elif len(str(ad)) > 150:
-        description = f"{str(ad) [:150]}..."
+    elif len(ad) > 150:
+        description = f"{ad[:150]}..."
 
     # if it's not greater that 150, show all of it
     elif len(ad) <= 150:
-        description = str(ad)
-
-    #print(description)      
+        description = ad
 
     # show the link
     link = article['link']
-    #print(f"Link: {link}")
 
-    body = body + title + "\n" + description\
+    # add extracted data to the existing body
+    body += "\n" + title + "\n" + description\
           + "\n" + f"Link: {link}" + 2*"\n"
     
 print(body)
