@@ -14,14 +14,17 @@ content = request.json() # convert the content into a json format dictionary
 # access the value of 'results' key
 articles = content['results']
 
+# create a body
+body = ""
+
 # iterate over all elements in the 'articles' list
 for index, article in enumerate(articles):
     print()
-    print(f"{index+1}. ARTICLE")
+    #print(f"{index+1}. ARTICLE")
 
     # article title
     title = article['title'] 
-    print(title)
+    #print(title)
     print()
 
     ad = article['description']
@@ -37,8 +40,13 @@ for index, article in enumerate(articles):
     elif len(ad) <= 150:
         description = str(ad)
 
-    print(description)      
+    #print(description)      
 
     # show the link
     link = article['link']
-    print(f"Link: {link}")
+    #print(f"Link: {link}")
+
+    body = "Subject: Latest News" + "\n" + title + "\n" + description\
+          + "\n" + f"Link: {link}" + 2*"\n"
+    
+    print(body)
