@@ -1,5 +1,5 @@
 import requests
-#from send_email import send_email
+from send_email import send_email
 
 api_key = "pub_77528381bf43230c1877b14e6739ac620b6da"
 
@@ -46,7 +46,10 @@ for index, article in enumerate(articles):
     link = article['link']
     #print(f"Link: {link}")
 
-    body = "Subject: Latest News" + "\n" + title + "\n" + description\
+    body = body + title + "\n" + description\
           + "\n" + f"Link: {link}" + 2*"\n"
     
-    print(body)
+print(body)
+
+body = body.encode("utf-8")
+send_email(message=body)
